@@ -1,4 +1,5 @@
 import 'package:cap_app/core/resource/app_assets.dart';
+import 'package:cap_app/features/auth/screens/sign_in_screen.dart';
 import 'package:flutter/material.dart';
 
 class WelcomePage extends StatelessWidget {
@@ -40,7 +41,12 @@ class WelcomePage extends StatelessWidget {
                   ElevatedButton(
                       style: ElevatedButton.styleFrom(
                           backgroundColor: Color(0xFFC64949)),
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => SignIn()),
+                        );
+                      },
                       child: SizedBox(
                         width: 243,
                         height: 52,

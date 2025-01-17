@@ -80,6 +80,18 @@ flutter:
     - family: Inconsolata
       fonts:
         - asset: assets/fonts/Inconsolata/Inconsolata-ExtraBold.ttf
+
+    - family: Roboto
+      fonts:
+        - asset: assets/fonts/Roboto/Roboto-Regular.ttf
+
+    - family: Imprima
+      fonts:
+        - asset: assets/fonts/Imprima/Imprima-Regular.ttf
+
+    - family: Inter
+      fonts:
+        - asset: assets/fonts/Inter/Inter_18pt-Regular.ttf
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
