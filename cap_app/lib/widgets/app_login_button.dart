@@ -7,15 +7,22 @@ class LoginButton extends StatelessWidget {
   final Color textColor;
   final double marginBottom;
   final GlobalKey<FormState> formKey;
-  const LoginButton({
-    super.key,
-    required this.title,
-    required this.bkgColor,
-    required this.fontWeight,
-    required this.textColor,
-    required this.marginBottom,
-    required this.formKey,
-  });
+  final Function(dynamic, dynamic)? onTap;
+  final TextEditingController? loginController;
+  final TextEditingController? passController;
+  final dynamic prefs;
+  const LoginButton(
+      {super.key,
+      required this.title,
+      required this.bkgColor,
+      required this.fontWeight,
+      required this.textColor,
+      required this.marginBottom,
+      required this.formKey,
+      this.onTap,
+      this.loginController,
+      this.passController,
+      this.prefs});
 
   @override
   Widget build(BuildContext context) {
@@ -34,6 +41,11 @@ class LoginButton extends StatelessWidget {
           onPressed: () {
             if (formKey.currentState!.validate()) {
               print("Validation successful!");
+              if (loginController != null && passController != null) {
+                onTap!(loginController, passController);
+              } else {
+                onTap!(prefs, null);
+              }
             } else {}
           },
           child: Text(

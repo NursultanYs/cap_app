@@ -1,19 +1,38 @@
 import 'package:cap_app/core/extensensions/textStyle_extension.dart';
 import 'package:cap_app/core/resource/app_assets.dart';
+import 'package:cap_app/core/services/shared_prefs.dart';
 import 'package:cap_app/core/theme/app_textStyles.dart';
 import 'package:cap_app/features/auth/app_validators.dart';
+import 'package:cap_app/features/auth/screens/sign_up_screen.dart';
 import 'package:cap_app/features/auth/widgets/app_button.dart';
 import 'package:cap_app/widgets/app_login_button.dart';
 import 'package:flutter/material.dart';
 import 'package:cap_app/features/auth/widgets/auth_text_field.dart';
 
-class SignIn extends StatelessWidget {
+class SignIn extends StatefulWidget {
   const SignIn({super.key});
+
+  @override
+  State<SignIn> createState() => _SignInState();
+}
+
+class _SignInState extends State<SignIn> {
+  final _loginController = TextEditingController();
+  final _passwordController = TextEditingController();
+
+  final _prefs = SharedPrefs();
+  @override
+  void dispose() {
+    _loginController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     final emailValidator = EmailValidator(); // Создание экземпляра валидатора
     final _formKey = GlobalKey<FormState>();
+
     return Scaffold(
         body: SafeArea(
       child: Padding(
@@ -40,6 +59,7 @@ class SignIn extends StatelessWidget {
                     color: const Color(0xFF2B4C59),
                     marginBottom: 28,
                     validator: emailValidator.getValidator(),
+                    controller: _loginController,
                   ),
                   TextAuthField(
                     size: 16,
@@ -47,6 +67,7 @@ class SignIn extends StatelessWidget {
                     title: "PASSWORD",
                     marginBottom: 12,
                     obscureText: true,
+                    controller: _passwordController,
                   ),
                   Container(
                     alignment: Alignment.centerLeft,
@@ -65,6 +86,16 @@ class SignIn extends StatelessWidget {
                     textColor: Colors.white,
                     marginBottom: 9,
                     formKey: _formKey,
+                    prefs: _prefs,
+                    onTap: (prefs, title) async {
+                      final login = await prefs.read(key: StorageKey.login);
+                      final password =
+                          await prefs.read(key: StorageKey.password);
+                      if (login == _loginController.text &&
+                          password == _passwordController.text) {
+                        print("успех");
+                      }
+                    },
                   ),
                   Container(
                     margin: const EdgeInsets.only(bottom: 9),
@@ -96,14 +127,22 @@ class SignIn extends StatelessWidget {
                       ),
                       Container(
                         padding: const EdgeInsets.only(right: 33),
-                        child: const Text(
-                          "SIGN UP",
-                          style: TextStyle(
-                              color: Color(0xFFfcc21b),
-                              fontFamily: "Inter",
-                              fontWeight: FontWeight.bold,
-                              fontStyle: FontStyle.italic,
-                              fontSize: 13),
+                        child: InkWell(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => (const SignUp())));
+                          },
+                          child: const Text(
+                            "SIGN UP",
+                            style: TextStyle(
+                                color: Color(0xFFfcc21b),
+                                fontFamily: "Inter",
+                                fontWeight: FontWeight.bold,
+                                fontStyle: FontStyle.italic,
+                                fontSize: 13),
+                          ),
                         ),
                       )
                     ],

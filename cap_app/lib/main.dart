@@ -1,4 +1,4 @@
-import 'package:cap_app/features/welcome/welcome_screen.dart';
+  import 'package:cap_app/features/welcome/welcome_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {

@@ -14,9 +14,42 @@ class EmailValidator implements AppValidators {
       if (!emailRegex.hasMatch(email)) {
         return 'Invalid email format';
       }
+      if (email.length > 25) {
+        return "Email is too long";
+      }
       return null;
     };
   }
 }
 
+class NameValidator implements AppValidators {
+  @override
+  String? Function(String?)? getValidator() {
+    return (String? name) {
+      if (name == null || name.isEmpty) {
+        return "Name cannot be empty";
+      }
+      if (name.length > 25) {
+        return "Name is too long";
+      }
+      return null;
+    };
+  }
+}
 
+class PasswordValidatr implements AppValidators {
+  @override
+  String? Function(String?)? getValidator() {
+    return (String? pass) {
+      if (pass == null || pass.isEmpty) {
+        return "Password cannot be empty";
+      }
+      if (pass.length > 20) {
+        return "Password is too long";
+      }
+      if (pass.length < 7) {
+        return "Password is too short";
+      }
+    };
+  }
+}

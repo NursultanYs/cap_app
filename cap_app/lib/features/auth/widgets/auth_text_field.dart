@@ -10,6 +10,7 @@ class TextAuthField extends StatefulWidget {
   final double marginBottom;
   bool obscureText;
   final String? Function(String?)? validator;
+  final TextEditingController? controller;
 
   TextAuthField({
     super.key,
@@ -18,6 +19,7 @@ class TextAuthField extends StatefulWidget {
     required this.title,
     required this.marginBottom,
     this.validator,
+    this.controller,
     this.obscureText = false,
   });
 
@@ -34,7 +36,7 @@ class _textAuthFieldState extends State<TextAuthField> {
         Align(
           alignment: Alignment.centerLeft,
           child: Container(
-            margin: const EdgeInsets.only(bottom: 10),
+            margin: const EdgeInsets.only(bottom: 0),
             child: Text(
               widget.title,
               style: AppTextstyles.regular
@@ -49,6 +51,7 @@ class _textAuthFieldState extends State<TextAuthField> {
             margin: EdgeInsets.only(bottom: widget.marginBottom),
             child: TextFormField(
               validator: widget.validator,
+              controller: widget.controller,
               obscureText: visible,
               decoration: InputDecoration(
                 border: InputBorder.none,
