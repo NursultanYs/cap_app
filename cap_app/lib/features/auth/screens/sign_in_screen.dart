@@ -91,7 +91,8 @@ class _SignInState extends State<SignIn> {
                       final login = await prefs.read(key: StorageKey.login);
                       final password =
                           await prefs.read(key: StorageKey.password);
-                      if (login == _loginController.text &&
+                      if (login.toLowerCase() ==
+                              _loginController.text.toLowerCase() &&
                           password == _passwordController.text) {
                         print("успех");
                       }
