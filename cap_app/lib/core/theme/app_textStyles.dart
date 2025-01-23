@@ -7,3 +7,4 @@ abstract class AppTextstyles {
   static const TextStyle semiBold = TextStyle(fontWeight: FontWeight.w600);
   static const TextStyle bold = TextStyle(fontWeight: FontWeight.w700);
 }
+

@@ -50,6 +50,7 @@ class PasswordValidatr implements AppValidators {
       if (pass.length < 7) {
         return "Password is too short";
       }
+      return null;
     };
   }
 }

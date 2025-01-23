@@ -8,6 +8,7 @@ import 'package:cap_app/features/auth/widgets/app_button.dart';
 import 'package:cap_app/widgets/app_login_button.dart';
 import 'package:flutter/material.dart';
 import 'package:cap_app/features/auth/widgets/auth_text_field.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class SignIn extends StatefulWidget {
   const SignIn({super.key});
@@ -94,7 +95,23 @@ class _SignInState extends State<SignIn> {
                       if (login.toLowerCase() ==
                               _loginController.text.toLowerCase() &&
                           password == _passwordController.text) {
-                        print("успех");
+                        Fluttertoast.showToast(
+                            msg: "Succes",
+                            toastLength: Toast.LENGTH_SHORT,
+                            gravity: ToastGravity.CENTER,
+                            timeInSecForIosWeb: 2,
+                            backgroundColor: Colors.green,
+                            textColor: Colors.white,
+                            fontSize: 16.0);
+                      } else {
+                        Fluttertoast.showToast(
+                            msg: "Invalid password or Email",
+                            toastLength: Toast.LENGTH_SHORT,
+                            gravity: ToastGravity.CENTER,
+                            timeInSecForIosWeb: 2,
+                            backgroundColor: Colors.red,
+                            textColor: Colors.white,
+                            fontSize: 16.0);
                       }
                     },
                   ),

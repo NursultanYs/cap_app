@@ -24,11 +24,11 @@ class WelcomePage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Container(
-                      margin: EdgeInsets.only(bottom: 310),
+                      margin: const EdgeInsets.only(bottom: 310),
                       child: Image.asset(AppAssets.welcomeLogo)),
                   Container(
-                    margin: EdgeInsets.only(bottom: 70),
-                    child: Text(
+                    margin:  const EdgeInsets.only(bottom: 70),
+                    child:  const Text(
                       "Rent your dream car from the Best Company",
                       style: TextStyle(
                           fontSize: 27,
@@ -53,14 +53,14 @@ class WelcomePage extends StatelessWidget {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text("Get Started",
+                            const Text("Get Started",
                                 style: TextStyle(
                                     fontSize: 20,
                                     fontWeight: FontWeight.w800,
                                     fontFamily: "Inconsolata",
                                     color: Colors.white)),
                             Container(
-                                margin: EdgeInsets.only(left: 8),
+                                margin: const EdgeInsets.only(left: 8),
                                 child: Image.asset(AppAssets.arrowButton))
                           ],
                         ),

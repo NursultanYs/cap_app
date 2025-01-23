@@ -1,4 +1,3 @@
-import 'dart:math';
 
 import 'package:cap_app/core/extensensions/textStyle_extension.dart';
 import 'package:cap_app/core/resource/app_assets.dart';

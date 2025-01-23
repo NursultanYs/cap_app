@@ -17,3 +17,12 @@ extension TextFamilyExtension on TextStyle {
     return this.copyWith(fontFamily: family);
   }
 }
+
+// extension SizedBoxHeight on int {
+//   SizedBox createSizedBox({double width = 0}) {
+//     return SizedBox(
+//       height: toDouble(),
+//       width: width,
+//     );
+//   }
+// }
