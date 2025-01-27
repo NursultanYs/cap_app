@@ -1,3 +1,4 @@
+import 'package:cap_app/features/cart/cars_catalog.dart';
 import 'package:cap_app/features/home/data_provider.dart';
 import 'package:cap_app/features/home/shop.dart';
 import 'package:cap_app/features/welcome/welcome_screen.dart';
@@ -15,9 +16,7 @@ class CarApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       create: (context) => DataProvider(),
-      child: const MaterialApp(
-        home: ShopScreen(),
-      ),
+      child: const MaterialApp(home: CarsCatalog()),
     );
   }
 }
