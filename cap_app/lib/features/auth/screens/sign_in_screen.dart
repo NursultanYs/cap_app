@@ -5,6 +5,7 @@ import 'package:cap_app/core/theme/app_textStyles.dart';
 import 'package:cap_app/features/auth/app_validators.dart';
 import 'package:cap_app/features/auth/screens/sign_up_screen.dart';
 import 'package:cap_app/features/auth/widgets/app_button.dart';
+import 'package:cap_app/features/home/screens/main_screen.dart';
 import 'package:cap_app/widgets/app_login_button.dart';
 import 'package:flutter/material.dart';
 import 'package:cap_app/features/auth/widgets/auth_text_field.dart';
@@ -55,7 +56,7 @@ class _SignInState extends State<SignIn> {
               child: Column(
                 children: [
                   TextAuthField(
-                    title: "EMAIL OR PHONE",
+                    title: "EMAIL",
                     size: 16,
                     color: const Color(0xFF2B4C59),
                     marginBottom: 28,
@@ -88,7 +89,11 @@ class _SignInState extends State<SignIn> {
                     marginBottom: 9,
                     formKey: _formKey,
                     prefs: _prefs,
-                    onTap: (prefs, title) async {
+                    onTap: (
+                      p,
+                      prefs,
+                      title,
+                    ) async {
                       final login = await prefs.read(key: StorageKey.login);
                       final password =
                           await prefs.read(key: StorageKey.password);
@@ -96,22 +101,31 @@ class _SignInState extends State<SignIn> {
                               _loginController.text.toLowerCase() &&
                           password == _passwordController.text) {
                         Fluttertoast.showToast(
-                            msg: "Succes",
-                            toastLength: Toast.LENGTH_SHORT,
-                            gravity: ToastGravity.CENTER,
-                            timeInSecForIosWeb: 2,
-                            backgroundColor: Colors.green,
-                            textColor: Colors.white,
-                            fontSize: 16.0);
+                          msg: "Success",
+                          toastLength: Toast.LENGTH_SHORT,
+                          gravity: ToastGravity.CENTER,
+                          timeInSecForIosWeb: 2,
+                          backgroundColor: Colors.green,
+                          textColor: Colors.white,
+                          fontSize: 16.0,
+                        );
+
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const MainScreen(),
+                          ),
+                        );
                       } else {
                         Fluttertoast.showToast(
-                            msg: "Invalid password or Email",
-                            toastLength: Toast.LENGTH_SHORT,
-                            gravity: ToastGravity.CENTER,
-                            timeInSecForIosWeb: 2,
-                            backgroundColor: Colors.red,
-                            textColor: Colors.white,
-                            fontSize: 16.0);
+                          msg: "Invalid password or Email",
+                          toastLength: Toast.LENGTH_SHORT,
+                          gravity: ToastGravity.CENTER,
+                          timeInSecForIosWeb: 2,
+                          backgroundColor: Colors.red,
+                          textColor: Colors.white,
+                          fontSize: 16.0,
+                        );
                       }
                     },
                   ),

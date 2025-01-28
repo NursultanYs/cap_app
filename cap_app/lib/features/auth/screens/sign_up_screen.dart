@@ -1,4 +1,3 @@
-
 import 'package:cap_app/core/extensensions/textStyle_extension.dart';
 import 'package:cap_app/core/resource/app_assets.dart';
 import 'package:cap_app/core/services/shared_prefs.dart';
@@ -20,6 +19,7 @@ class SignUp extends StatefulWidget {
 class _SignUpState extends State<SignUp> {
   final _loginController = TextEditingController();
   final _passwordController = TextEditingController();
+  final _nameController = TextEditingController();
 
   final _prefs = SharedPrefs();
   @override
@@ -61,9 +61,10 @@ class _SignUpState extends State<SignUp> {
                     color: const Color(0xFF2B4C59),
                     marginBottom: 18,
                     validator: nameValidator.getValidator(),
+                    controller: _nameController,
                   ),
                   TextAuthField(
-                    title: "EMAIL OR PHONE",
+                    title: "EMAIL",
                     size: 16,
                     color: const Color(0xFF2B4C59),
                     marginBottom: 28,
@@ -87,8 +88,15 @@ class _SignUpState extends State<SignUp> {
                     marginBottom: 9,
                     loginController: _loginController,
                     passController: _passwordController,
+                    nameController: _nameController,
                     formKey: _formKey,
-                    onTap: (loginController, passwordController) {
+                    onTap:
+                        (nameController, loginController, passwordController) {
+                      if (nameController != null) {
+                        _prefs.save(
+                            key: StorageKey.name, value: _nameController.text);
+                        print("Записал");
+                      }
                       if (loginController != null) {
                         _prefs.save(
                             key: StorageKey.login,
@@ -100,6 +108,7 @@ class _SignUpState extends State<SignUp> {
                             key: StorageKey.password,
                             value: passwordController.text);
                         print("Записла");
+                        print(_prefs);
                       }
                       if (loginController == null ||
                           passwordController == null) {}

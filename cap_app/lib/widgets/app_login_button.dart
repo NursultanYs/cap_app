@@ -7,9 +7,10 @@ class LoginButton extends StatelessWidget {
   final Color textColor;
   final double marginBottom;
   final GlobalKey<FormState> formKey;
-  final Function(dynamic, dynamic)? onTap;
+  final Function(dynamic, dynamic, dynamic?)? onTap;
   final TextEditingController? loginController;
   final TextEditingController? passController;
+  final TextEditingController? nameController;
   final dynamic prefs;
   const LoginButton(
       {super.key,
@@ -22,6 +23,7 @@ class LoginButton extends StatelessWidget {
       this.onTap,
       this.loginController,
       this.passController,
+      this.nameController,
       this.prefs});
 
   @override
@@ -41,10 +43,12 @@ class LoginButton extends StatelessWidget {
           onPressed: () {
             if (formKey.currentState!.validate()) {
               print("Validation successful!");
-              if (loginController != null && passController != null) {
-                onTap!(loginController, passController);
+              if (loginController != null &&
+                  passController != null &&
+                  nameController != null) {
+                onTap!(nameController, loginController, passController);
               } else {
-                onTap!(prefs, null);
+                onTap!(null, prefs, null);
               }
             } else {}
           },

@@ -97,9 +97,9 @@ flutter:
       fonts:
         - asset: assets/fonts/Inter/Inter_18pt-Regular.ttf
 
-  #   - family: Kaushan
-  #     fonts:
-  #       - asset: assets/fonts/Kaushan/KaushanScript-Regular.ttf
+    - family: Kaushan
+      fonts:
+        - asset: assets/fonts/Kaushan/KaushanScript-Regular.ttf
   # #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

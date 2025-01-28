@@ -13,11 +13,12 @@ class SharedPrefs {
     required String key,
   }) async {
     final prefs = await SharedPreferences.getInstance();
-    return prefs.getString(key); 
+    return prefs.getString(key);
   }
 }
 
 abstract class StorageKey {
+  static const String name = "NAME";
   static const String login = "LOGIN";
   static const String password = "PASSWORD";
 }
