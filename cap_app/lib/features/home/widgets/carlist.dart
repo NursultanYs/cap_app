@@ -6,17 +6,18 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class CarListView extends StatefulWidget {
-  const CarListView({super.key});
+  final List<Car> cartList;
+  const CarListView({super.key, required this.cartList});
 
   @override
   State<CarListView> createState() => _CarListViewState();
 }
 
 class _CarListViewState extends State<CarListView> {
-  final carList = carsData;
   @override
   Widget build(BuildContext context) {
-    final list = context.read<FavoriteProvider>().favoriteList;
+    final favoriteProvider = context.watch<FavoriteProvider>();
+    final list = favoriteProvider.favoriteList;
     return Expanded(
       child: ListView.separated(
         itemBuilder: (context, index) => Row(
@@ -28,7 +29,7 @@ class _CarListViewState extends State<CarListView> {
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(20),
                 child: Image.network(
-                  carList[index].image,
+                  widget.cartList[index].image,
                   fit: BoxFit.cover,
                 ),
               ),
@@ -43,11 +44,11 @@ class _CarListViewState extends State<CarListView> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      carList[index].mark,
+                      widget.cartList[index].mark,
                       style: AppTextstyles.bold.withFontSize(25),
                     ),
                     Text(
-                      " ${carList[index].model} ${carList[index].year}",
+                      " ${widget.cartList[index].model} ${widget.cartList[index].year}",
                       style: AppTextstyles.medium.withFontSize(20),
                     )
                   ],
@@ -60,13 +61,11 @@ class _CarListViewState extends State<CarListView> {
                               Provider.of<FavoriteProvider>(context,
                                   listen: false);
                           favoriteProvider.changeFavorite(
-                              newFavorite: carList[index]);
-                          print(favoriteProvider.favoriteList);
-                          setState(() {});
+                              newFavorite: widget.cartList[index]);
                         },
                         icon: Icon(
                           Icons.favorite,
-                          color: list.contains(carList[index])
+                          color: list.contains(widget.cartList[index])
                               ? Colors.red
                               : Colors.grey,
                         ))
@@ -79,7 +78,7 @@ class _CarListViewState extends State<CarListView> {
         separatorBuilder: (context, index) => const SizedBox(
           height: 10,
         ),
-        itemCount: carList.length,
+        itemCount: widget.cartList.length,
       ),
     );
   }

@@ -21,7 +21,7 @@ class CarApp extends StatelessWidget {
         ),
       ],
       child: const MaterialApp(
-        home: MainScreen(),
+        home: WelcomePage(),
       ),
     );
   }

@@ -27,8 +27,8 @@ class WelcomePage extends StatelessWidget {
                       margin: const EdgeInsets.only(bottom: 310),
                       child: Image.asset(AppAssets.welcomeLogo)),
                   Container(
-                    margin:  const EdgeInsets.only(bottom: 70),
-                    child:  const Text(
+                    margin: const EdgeInsets.only(bottom: 70),
+                    child: const Text(
                       "Rent your dream car from the Best Company",
                       style: TextStyle(
                           fontSize: 27,
@@ -40,11 +40,12 @@ class WelcomePage extends StatelessWidget {
                   ),
                   ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                          backgroundColor: Color(0xFFC64949)),
+                          backgroundColor: const Color(0xFFC64949)),
                       onPressed: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => SignIn()),
+                          MaterialPageRoute(
+                              builder: (context) => const SignIn()),
                         );
                       },
                       child: SizedBox(

@@ -3,6 +3,8 @@ import 'dart:math';
 import 'package:cap_app/core/extensensions/textStyle_extension.dart';
 import 'package:cap_app/core/services/shared_prefs.dart';
 import 'package:cap_app/core/theme/app_textStyles.dart';
+import 'package:cap_app/features/home/screens/favourites.dart';
+import 'package:cap_app/features/welcome/welcome_screen.dart';
 import 'package:flutter/material.dart';
 
 class MainDrawer extends StatelessWidget {
@@ -22,35 +24,43 @@ class MainDrawer extends StatelessWidget {
         children: [
           Column(
             children: [
-              CircleAvatar(
-                  radius: 75,
-                  backgroundImage: NetworkImage(
-                    "https://b.fssta.com/uploads/application/soccer/headshots/885.png",
-                  )),
-              SizedBox(
-                height: 15,
-              ),
-              FutureBuilder(
-                  future: fetchData(),
-                  builder: (context, snapshot) {
-                    return Column(children: [
-                      Text(
-                        '${snapshot.data?[0]}',
-                        style: AppTextstyles.bold.withFontSize(30),
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Text(
-                        '${snapshot.data?[1]}',
-                        style: AppTextstyles.bold,
-                      )
-                    ]);
-                  })
+              Column(
+                children: [
+                  const CircleAvatar(
+                      radius: 75,
+                      backgroundImage: NetworkImage(
+                        "https://b.fssta.com/uploads/application/soccer/headshots/885.png",
+                      )),
+                  const SizedBox(
+                    height: 15,
+                  ),
+                  FutureBuilder(
+                      future: fetchData(),
+                      builder: (context, snapshot) {
+                        return Column(children: [
+                          Text(
+                            '${snapshot.data?[0]}',
+                            style: AppTextstyles.bold.withFontSize(30),
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          Text(
+                            '${snapshot.data?[1]}',
+                            style: AppTextstyles.bold,
+                          )
+                        ]);
+                      })
+                ],
+              )
             ],
           ),
           const Divider(),
           ListTile(
+            onTap: () {
+              Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (context) => Favourites()));
+            },
             leading: Icon(Icons.home_outlined),
             title: Text(
               "Home",
@@ -58,6 +68,10 @@ class MainDrawer extends StatelessWidget {
             ),
           ),
           ListTile(
+            onTap: () {
+              Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (context) => Favourites()));
+            },
             leading: Icon(Icons.favorite_border),
             title: Text(
               "Favourites",
@@ -65,6 +79,10 @@ class MainDrawer extends StatelessWidget {
             ),
           ),
           ListTile(
+            onTap: () {
+              Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (context) => Favourites()));
+            },
             leading: Icon(Icons.call_outlined),
             title: Text(
               "Call",
@@ -72,6 +90,10 @@ class MainDrawer extends StatelessWidget {
             ),
           ),
           ListTile(
+            onTap: () {
+              Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (context) => Favourites()));
+            },
             leading: Icon(Icons.settings_outlined),
             title: Text(
               "Settings",
@@ -79,6 +101,13 @@ class MainDrawer extends StatelessWidget {
             ),
           ),
           ListTile(
+            onTap: () {
+              Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(builder: (context) => const WelcomePage()),
+                (route) => false,
+              );
+            },
             leading: Icon(Icons.logout),
             title: Text(
               "Log out",

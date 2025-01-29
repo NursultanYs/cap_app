@@ -32,7 +32,7 @@ class _SignInState extends State<SignIn> {
 
   @override
   Widget build(BuildContext context) {
-    final emailValidator = EmailValidator(); // Создание экземпляра валидатора
+    final emailValidator = EmailValidator(); 
     final _formKey = GlobalKey<FormState>();
 
     return Scaffold(

@@ -95,20 +95,20 @@ class _SignUpState extends State<SignUp> {
                       if (nameController != null) {
                         _prefs.save(
                             key: StorageKey.name, value: _nameController.text);
-                        print("Записал");
+                        // print("Записал");
                       }
                       if (loginController != null) {
                         _prefs.save(
                             key: StorageKey.login,
                             value: _loginController.text);
-                        print("Записал");
+                        // print("Записал");
                       }
                       if (passwordController != null) {
                         _prefs.save(
                             key: StorageKey.password,
                             value: passwordController.text);
-                        print("Записла");
-                        print(_prefs);
+                        // print("Записла");
+                        // print(_prefs);
                       }
                       if (loginController == null ||
                           passwordController == null) {}

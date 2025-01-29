@@ -1,3 +1,4 @@
+import 'package:cap_app/features/home/models/cars_data.dart';
 import 'package:flutter/material.dart';
 import 'package:cap_app/core/extensensions/textStyle_extension.dart';
 import 'package:cap_app/core/resource/app_assets.dart';
@@ -136,7 +137,9 @@ class _MainScreenState extends State<MainScreen> {
                     AppTextstyles.regular.withFontSize(20).withFamily("Roboto"),
               ),
               const SizedBox(height: 20),
-              CarListView()
+              CarListView(
+                cartList: carsData,
+              )
             ],
           ),
         ),
