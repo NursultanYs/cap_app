@@ -18,6 +18,8 @@ class _CarListViewState extends State<CarListView> {
   Widget build(BuildContext context) {
     final favoriteProvider = context.watch<FavoriteProvider>();
     final list = favoriteProvider.favoriteList;
+    final listCart = favoriteProvider.cartList;
+
     return Expanded(
       child: ListView.separated(
         itemBuilder: (context, index) => Row(
@@ -66,6 +68,20 @@ class _CarListViewState extends State<CarListView> {
                         icon: Icon(
                           Icons.favorite,
                           color: list.contains(widget.cartList[index])
+                              ? Colors.red
+                              : Colors.grey,
+                        )),
+                    IconButton(
+                        onPressed: () {
+                          final favoriteProvider =
+                              Provider.of<FavoriteProvider>(context,
+                                  listen: false);
+                          favoriteProvider.changeCart(
+                              newCart: widget.cartList[index]);
+                        },
+                        icon: Icon(
+                          Icons.shopping_cart_outlined,
+                          color: listCart.contains(widget.cartList[index])
                               ? Colors.red
                               : Colors.grey,
                         ))

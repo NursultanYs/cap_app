@@ -12,4 +12,15 @@ class FavoriteProvider extends ChangeNotifier {
     }
     notifyListeners();
   }
+
+  List<Car> cartList = [];
+
+  void changeCart({required Car newCart}) {
+    if (cartList.contains(newCart)) {
+      cartList.remove(newCart);
+    } else {
+      cartList.add(newCart);
+    }
+    notifyListeners();
+  }
 }

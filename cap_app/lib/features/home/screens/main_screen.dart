@@ -1,4 +1,5 @@
 import 'package:cap_app/features/home/models/cars_data.dart';
+import 'package:cap_app/features/home/screens/cart_scree.dart';
 import 'package:flutter/material.dart';
 import 'package:cap_app/core/extensensions/textStyle_extension.dart';
 import 'package:cap_app/core/resource/app_assets.dart';
@@ -33,16 +34,25 @@ class _MainScreenState extends State<MainScreen> {
                   onTap: () {
                     _scaffoldKey.currentState?.openDrawer();
                   },
-                  child: Container(
-                    margin: const EdgeInsets.only(top: 8),
-                    child: Image.asset(
-                      AppAssets.drawer,
-                      width: 41,
-                      height: 39,
+                  child: InkWell(
+                    child: Container(
+                      margin: const EdgeInsets.only(top: 8),
+                      child: Image.asset(
+                        AppAssets.drawer,
+                        width: 41,
+                        height: 39,
+                      ),
                     ),
                   ),
                 ),
-                Image.asset(AppAssets.cart),
+                InkWell(
+                    onTap: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) {
+                        return Carts();
+                      }));
+                    },
+                    child: Image.asset(AppAssets.cart)),
               ],
             ),
           ),
